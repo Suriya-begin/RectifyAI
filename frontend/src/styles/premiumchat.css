@@ -1,0 +1,96 @@
+/* Premium Chat styles */
+:root{
+  --pc-bg: #ffffff;
+  --pc-ink: #0f172a;
+  --pc-accent: #7c3aed;
+  --pc-muted:#6b7280;
+  --pc-user:#06b6d4;
+  --pc-shadow: 0 18px 40px rgba(2,6,23,0.25);
+}
+
+/* floating wrapper */
+.premium-chat-floating {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  width: 360px;
+  max-width: calc(100% - 48px);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--pc-shadow);
+  background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(250,250,255,0.98));
+  transition: transform 260ms ease, opacity 200ms;
+  z-index: 1600;
+  display:flex;
+  flex-direction:column;
+}
+
+/* closed state => smaller card */
+.premium-chat-floating.closed {
+  transform: translateY(8px) scale(0.98);
+  opacity: 0.98;
+}
+
+/* header */
+.pc-header {
+  display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid rgba(15,23,42,0.04);
+}
+.pc-left{display:flex;gap:10px;align-items:center}
+.pc-avatar{width:44px;height:44px;border-radius:10px;box-shadow:0 6px 16px rgba(124,58,237,0.15);}
+.pc-title{font-weight:700;color:var(--pc-ink)}
+.pc-sub{font-size:12px;color:var(--pc-muted)}
+
+/* actions */
+.pc-actions{display:flex;gap:6px;align-items:center}
+.pc-btn{border:none;background:transparent;font-size:18px;cursor:pointer;padding:6px;border-radius:8px}
+.pc-minimize{border:none;background:transparent;font-size:18px;padding:6px;cursor:pointer}
+
+/* body */
+.pc-body{display:flex;flex-direction:column;height:520px;background:transparent}
+.pc-messages{flex:1;overflow:auto;padding:12px 12px 8px;display:flex;flex-direction:column;gap:12px}
+
+/* message layout */
+.pc-message{display:flex;gap:10px;align-items:flex-end;opacity:1;transition:transform 220ms ease, opacity 220ms}
+.pc-message.user{flex-direction:row-reverse;align-items:flex-end}
+.pc-msg-avatar{width:36px;height:36px;border-radius:8px}
+.pc-msg-content{max-width:75%}
+.pc-msg-bubble{padding:10px 12px;border-radius:12px;background:var(--pc-accent);color:white;box-shadow:0 8px 20px rgba(2,6,23,0.06);font-size:14px}
+.pc-message.user .pc-msg-bubble{background:var(--pc-user);color:white}
+.pc-msg-time{font-size:11px;color:var(--pc-muted);margin-top:6px}
+
+/* streaming styling */
+.pc-message.bot.streaming .pc-msg-bubble{background:linear-gradient(90deg, rgba(124,58,237,0.95), rgba(124,58,237,0.85));}
+
+/* typing bubble */
+.typing-bubble{width:70px;padding:8px 10px;border-radius:12px;background:#eef2ff;display:flex;align-items:center;justify-content:center}
+.dots{display:inline-block}
+.dots span{display:inline-block;width:8px;height:8px;border-radius:99px;margin:0 4px;background:#9ca3af;opacity:0.8;animation:blink 1s infinite}
+.dots span:nth-child(2){animation-delay:0.12s}
+.dots span:nth-child(3){animation-delay:0.24s}
+@keyframes blink{0%{opacity:0.2}50%{opacity:1}100%{opacity:0.2}}
+
+/* suggestions */
+.pc-suggestions{padding:8px 12px;display:flex;gap:8px;flex-wrap:wrap;border-top:1px solid rgba(15,23,42,0.03)}
+.chip{background:transparent;border:1px solid rgba(15,23,42,0.06);padding:8px 10px;border-radius:999px;cursor:pointer;font-size:13px}
+
+/* input */
+.pc-input-row{display:flex;padding:10px;border-top:1px solid rgba(15,23,42,0.04);gap:8px;align-items:center}
+.pc-input{flex:1;padding:10px 12px;border-radius:10px;border:1px solid rgba(15,23,42,0.06);resize:none;font-size:14px;min-height:40px}
+.pc-send{background:var(--pc-accent);color:white;border:none;padding:10px 14px;border-radius:10px;cursor:pointer}
+
+/* minimized badge */
+.pc-floating-badge{position:fixed;right:22px;bottom:22px;border-radius:999px;padding:8px;border:none;box-shadow:var(--pc-shadow);z-index:1700;background:white}
+.pc-floating-badge img{width:48px;height:48px;border-radius:12px}
+
+/* dark mode variants */
+.premium-chat-floating.dark,
+.pc-floating-badge.dark{
+  background: linear-gradient(180deg, #071129, #071129);
+  color: #e6eef8;
+}
+.premium-chat-floating.dark .pc-body{background:transparent}
+.premium-chat-floating.dark .pc-msg-bubble{background:#1f2937;color:#e6eef8}
+.premium-chat-floating.dark .pc-message.user .pc-msg-bubble{background:#0ea5a4}
+.premium-chat-floating.dark .pc-title, .premium-chat-floating.dark .pc-sub{color:#e6eef8}
+.premium-chat-floating.dark .pc-input{background:#0b1220;border:1px solid rgba(255,255,255,0.04);color:#d7e6ff}
+.premium-chat-floating.dark .chip{border:1px solid rgba(255,255,255,0.06);color:#d7e6ff}
